@@ -125,35 +125,6 @@ function random_Utility(min, max) {
 
 
 
-/* function is_a_bomb(cellNumber, bombs) {
-    if (bombs.includes(cellNumber)) {
-      console.log('is a bomb! Game over');
-    } else {
-      console.log('keep trying');
-    }
-  } */
-
-
-
-
-
-/**
-
- */
-
-
-
-/* const bombs = []
-
-while (bombs.length < 16) {
-    const numeroBomba = getRandomNumber(1, cellNumber)
-    if (!bombs.includes(numeroBomba)) {
-        bombs.push(numeroBomba)
-    }
-} 
-
-
-console.log(bombs);  */
 
 
 
