@@ -1,7 +1,7 @@
 
 
 /* Consegna
-L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
+L'utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un cellId:
 con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
@@ -51,7 +51,28 @@ function random_Utility(min, max) {
 }
 
 
-
+/**
+* Generates bombs
+ * @param {number} grid_cells 
+ * @returns 
+ */
+function generateBombs(grid_cells) {
+    // creare un array vuota
+    const bombs = []
+    // ciclare finche la lunghezza dell'array bombs non é 16
+    while (bombs.length < 16) {
+      //console.log(bombs);
+      // genera un numero casuale tra un min e max
+      const randomNumber = getRandomNumber(1, grid_cells)
+      // verifica se il numero non é giá incluso e inseriscilo tra le bombe
+      if (!bombs.includes(randomNumber)) {
+        console.log('Add a bomb');
+        bombs.push(randomNumber)
+      }
+    }
+  
+    return bombs;
+}
 
 /* const bombs = []
 
@@ -82,7 +103,7 @@ function xxx() {
     for (let i = 1; i <= cellNumber; i++) {
 
         //creo il numero casuale dei ivelli
-        let range = i
+        let cellId = i
         //creo un div ripetuto e ci aggiungo una classe
         let cell = document.createElement('div');
         cell.style.width = cellDimension
@@ -92,18 +113,15 @@ function xxx() {
 
         //creo un secondo div per ogni cella e ci metto il numero 
         let theNumber = document.createElement('div');
-        theNumber.innerHTML = range 
-        theNumber.className = /* 'd-none' */ 
+        theNumber.innerHTML = cellId 
         cell.append(theNumber)  
  
         //al click modifico le classi dei div
         cell.addEventListener('click',  function () {    
             if (this.classList.contains("color")) {
                 this.classList.remove("color")
-                theNumber.classList.add('d-none')
             } else {
                 this.classList.add("color")
-                theNumber.classList.remove('d-none')
             }
         })
         
