@@ -24,6 +24,7 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 
 
 const griglia = document.getElementById('container')
+const punteggio = document.getElementById('punteggio-txt')
 
 let cellNumber;
 let cellDimension;
@@ -56,18 +57,6 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
-function bombGeneretor(quantity, max){
-    const bombList = []
-    while(bombList.length < quantity){
-      var randomBombs = Math.floor(Math.random() * max) + 1
-      if(bombList.indexOf(randomBombs) === -1) bombList.push(randomBombs)
-    }
-  return(bombList)
-}
-
-
-
-
 function grillgen(x,y) {
     let bombs = bombGeneretor(16, x);
     console.log(bombs);
@@ -91,8 +80,9 @@ function grillgen(x,y) {
             if (bombs.includes(cellId)){
                 for (let i = 0; i < bombs.length; i++) {
                     document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");
-                }               
-            }
+                }  
+                punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`                    
+            }  
             else {
                 this.classList.add("color");
                 userPoint++;
@@ -106,6 +96,15 @@ function grillgen(x,y) {
 }
 
 
+
+function bombGeneretor(quantity, max){
+    const bombList = []
+    while(bombList.length < quantity){
+      var randomBombs = Math.floor(Math.random() * max) + 1
+      if(bombList.indexOf(randomBombs) === -1) bombList.push(randomBombs)
+    }
+  return(bombList)
+}
 
 
 
