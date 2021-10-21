@@ -9,15 +9,14 @@ Il computer deve generare 16 numeri casuali nello stesso range della difficoltà
 I numeri nella lista delle bombe non possono essere duplicati.
 In seguito l'utente clicca su ogni cella:
 se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso 
-
-
 e la partita termina,
+
+
+
+
 altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-
-
 La partita termina quando il giocatore clicca su una bomba
 o raggiunge il numero massimo possibile di numeri consentiti.
-
 Al termine della partita il software deve scoprire tutte le bombe e comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito. */
 
 
@@ -28,15 +27,6 @@ const griglia = document.getElementById('container')
 
 let cellNumber;
 let cellDimension;
-
-/* easyNumber = 100;
-easyDimension = '63px';
-
-middleNumber = 81;
-middleDimension = '70px';
-
-hardNumber = 49;
-hardDimension = '90px'; */
 
 
 
@@ -64,6 +54,7 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
+
 function bombGeneretor(quantity, max){
     const bombList = []
     while(bombList.length < quantity){
@@ -72,6 +63,7 @@ function bombGeneretor(quantity, max){
     }
   return(bombList)
 }
+
 
 
 
@@ -93,19 +85,18 @@ function grillgen(x,y) {
         cell.append(theNumber)  
  
 
-        cell.addEventListener('click',  function () {   
+        cell.addEventListener('click',  function (e) {   
          
             if (bombs.includes(cellId)){
                 this.classList.add("color-bomb");
+                this.removeEventListener('click', )
                 console.log('game over');
                 
                 
             }
             else {
-                console.log('keep trying');
                 this.classList.add("color");
                 userPoint.push(i)
-                console.log(userPoint.length);
             }
         })
     }
@@ -119,7 +110,7 @@ function grillgen(x,y) {
 
 
 const userPoint =[]  
-console.log(userPoint.length);        /*----------------------------------------------------------------------- comunicare il punteggio */
+       /*----------------------------------------------------------------------- comunicare il punteggio */
 
 
 
