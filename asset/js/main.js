@@ -22,92 +22,43 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 // seleziono elemento dalla DOM
 const griglia = document.getElementById('container')
 
-// l'utente indica un livello di difficoltà: 1 , 2 o 3
-let hardness;
-while (hardness != '1' && hardness != '2' && hardness != '3') {
-    hardness = prompt("scegli un livello di difficoltà : 1 , 2 o 3?");
-}
+const easyNumber = 100;
+const easyDimension = '63px';
 
-// assegno il valore di ogni opzione
-let cellNumber;
-let cellDimension;
+const middleNumber = 81;
+const middleDimension = '70px';
 
-if (hardness == 1){
-    cellNumber = 100;
-    cellDimension = '63px';
-}else if (hardness == 2){
-    cellNumber = 81;
-    cellDimension = '70px';
-}else if (hardness == 3){
-    cellNumber = 49;
-    cellDimension = '90px';
-}
+const hardNumber = 49;
+const hardDimension = '90px';
 
 
 
-// funzione utility per generare un numero random compreso in un intervallo
-function random_Utility(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+document.getElementById("lv1btn").addEventListener('click', function () {
+    grillgen(easyNumber,easyDimension)
+    /* document.getElementById('pulsanti').style.display = 'none'; */
+})
 
+document.getElementById("lv2btn").addEventListener('click', function () {
+    grillgen(middleNumber,middleDimension)
+    document.getElementById('pulsanti').style.display = 'none';
+})
 
-/**
-* Generates bombs
- * @param {number} grid_cells 
- * @returns 
- */
-function generateBombs(grid_cells) {
-    // creare un array vuota
-    const bombs = []
-    // ciclare finche la lunghezza dell'array bombs non é 16
-    while (bombs.length < 16) {
-      //console.log(bombs);
-      // genera un numero casuale tra un min e max
-      const randomNumber = getRandomNumber(1, grid_cells)
-      // verifica se il numero non é giá incluso e inseriscilo tra le bombe
-      if (!bombs.includes(randomNumber)) {
-        console.log('Add a bomb');
-        bombs.push(randomNumber)
-      }
-    }
-  
-    return bombs;
-}
-
-/* const bombs = []
-
-while (bombs.length < 16) {
-    const numeroBomba = getRandomNumber(1, cellNumber)
-    if (!bombs.includes(numeroBomba)) {
-        bombs.push(numeroBomba)
-    }
-} 
-
-
-console.log(bombs);  */
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("lv3btn").addEventListener('click', function () {
+    grillgen(hardNumber,hardDimension)
+    document.getElementById('pulsanti').style.display = 'none';
+})
 
 
 //creo una funzione che genera la griglia
-function xxx() {
-    for (let i = 1; i <= cellNumber; i++) {
+function grillgen(x,y) {
+    for (let i = 1; i <= x; i++) {
 
         //creo il numero casuale dei ivelli
         let cellId = i
         //creo un div ripetuto e ci aggiungo una classe
         let cell = document.createElement('div');
-        cell.style.width = cellDimension
-        cell.style.height = cellDimension
+        cell.style.width = y
+        cell.style.height = y
         cell.className = 'cell_type' , 'color'
         griglia.append(cell)     
 
@@ -124,11 +75,15 @@ function xxx() {
                 this.classList.add("color")
             }
         })
-        
     }
 }
 
-xxx();
+
+
+
+function random_Utility(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 
@@ -137,6 +92,59 @@ xxx();
 
 
 
+
+
+// assegno il valore di ogni opzione
+/* let cellNumber;
+let cellDimension;
+
+if (hardness == 1){
+    cellNumber = 100;
+    cellDimension = '63px';
+}else if (hardness == 2){
+    cellNumber = 81;
+    cellDimension = '70px';
+}else if (hardness == 3){
+    cellNumber = 49;
+    cellDimension = '90px';
+} */
+
+
+
+
+/**
+
+ */
+
+/* function generateBombs(grid_cells) {
+    // creare un array vuota
+    const bombs = []
+    // ciclare finche la lunghezza dell'array bombs non é 16
+    while (bombs.length < 16) {
+      //console.log(bombs);
+      // genera un numero casuale tra un min e max
+      const randomNumber = getRandomNumber(1, grid_cells)
+      // verifica se il numero non é giá incluso e inseriscilo tra le bombe
+      if (!bombs.includes(randomNumber)) {
+        console.log('Add a bomb');
+        bombs.push(randomNumber)
+      }
+    }
+  
+    return bombs;
+} */
+
+/* const bombs = []
+
+while (bombs.length < 16) {
+    const numeroBomba = getRandomNumber(1, cellNumber)
+    if (!bombs.includes(numeroBomba)) {
+        bombs.push(numeroBomba)
+    }
+} 
+
+
+console.log(bombs);  */
 
 
 
