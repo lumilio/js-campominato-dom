@@ -21,30 +21,39 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 
 const griglia = document.getElementById('container')
 
-easyNumber = 100;
+let cellNumber;
+let cellDimension;
+
+/* easyNumber = 100;
 easyDimension = '63px';
 
 middleNumber = 81;
 middleDimension = '70px';
 
 hardNumber = 49;
-hardDimension = '90px';
+hardDimension = '90px'; */
 
 
 
 
-document.getElementById("lv1btn").addEventListener('click', function () {      
-    grillgen(easyNumber,easyDimension)
+document.getElementById("lv1btn").addEventListener('click', function () {
+    cellNumber = 100;
+    cellDimension = '63px';       
+    grillgen(cellNumber,cellDimension)
     document.getElementById('pulsanti').style.display = 'none'; 
 })
 
 document.getElementById("lv2btn").addEventListener('click', function () {
-    grillgen(middleNumber,middleDimension)
+    cellNumber = 81;
+    cellDimension = '70px';
+    grillgen(cellNumber,cellDimension)
     document.getElementById('pulsanti').style.display = 'none';
 })
 
 document.getElementById("lv3btn").addEventListener('click', function () {
-    grillgen(hardNumber,hardDimension)
+    cellNumber = 49;
+    cellDimension = '90px';
+    grillgen(cellNumber,cellDimension)
     document.getElementById('pulsanti').style.display = 'none';
 })
 
@@ -52,6 +61,8 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 function grillgen(x,y) {
+    let bombs = bombGeneretor(16, x);
+    console.log(bombs);
     for (let i = 1; i <= x; i++) {
 
         let cellId = i
@@ -77,6 +88,8 @@ function grillgen(x,y) {
     }
 }
 
+
+
 function bombGeneretor(quantity, max){
     const bombList = []
     while(bombList.length < quantity){
@@ -87,7 +100,7 @@ function bombGeneretor(quantity, max){
 }
 
 
-let bombs = bombGeneretor(16, cellNumber);
+
 
 /* function generateBombs(cellNumber) {
     let bombsList = []
