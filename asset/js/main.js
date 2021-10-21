@@ -19,55 +19,54 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 
 
 
-// seleziono elemento dalla DOM
 const griglia = document.getElementById('container')
 
+easyNumber = 100;
+easyDimension = '63px';
 
-let cellNumber;
-let cellDimension;
+middleNumber = 81;
+middleDimension = '70px';
+
+hardNumber = 49;
+hardDimension = '90px';
 
 
-document.getElementById("lv1btn").addEventListener('click', function () {
-    cellNumber = 100;
-    cellDimension = '63px';       
-    grillgen(cellNumber,cellDimension)
-    document.getElementById('pulsanti').style.display = 'none';
+
+
+document.getElementById("lv1btn").addEventListener('click', function () {      
+    grillgen(easyNumber,easyDimension)
+    document.getElementById('pulsanti').style.display = 'none'; 
 })
 
 document.getElementById("lv2btn").addEventListener('click', function () {
-    cellNumber = 81;
-    cellDimension = '70px';
-    grillgen(cellNumber,cellDimension)
+    grillgen(middleNumber,middleDimension)
     document.getElementById('pulsanti').style.display = 'none';
 })
 
 document.getElementById("lv3btn").addEventListener('click', function () {
-    cellNumber = 49;
-    cellDimension = '90px';
-    grillgen(cellNumber,cellDimension)
+    grillgen(hardNumber,hardDimension)
     document.getElementById('pulsanti').style.display = 'none';
 })
 
 
-//creo una funzione che genera una griglia
+
+
 function grillgen(x,y) {
     for (let i = 1; i <= x; i++) {
 
-        //creo il numero casuale dei ivelli
         let cellId = i
-        //creo un div ripetuto e ci aggiungo una classe
         let cell = document.createElement('div');
         cell.style.width = y
         cell.style.height = y
         cell.className = 'cell_type' , 'color'
         griglia.append(cell)     
 
-        //creo un secondo div per ogni cella e ci metto il numero 
+
         let theNumber = document.createElement('div');
         theNumber.innerHTML = cellId 
         cell.append(theNumber)  
  
-        //al click modifico le classi dei div
+
         cell.addEventListener('click',  function () {    
             if (this.classList.contains("color")) {
                 this.classList.remove("color")
@@ -78,27 +77,48 @@ function grillgen(x,y) {
     }
 }
 
+function bombGeneretor(quantity, max){
+    const bombList = []
+    while(bombList.length < quantity){
+      var randomBombs = Math.floor(Math.random() * max) + 1
+      if(bombList.indexOf(randomBombs) === -1) bombList.push(randomBombs)
+    }
+  return(bombList)
+}
 
+
+let bombs = bombGeneretor(16, cellNumber);
+
+/* function generateBombs(cellNumber) {
+    let bombsList = []
+    while (bombsList.length < 16) {
+      let randomNumber = random_Utility(1, cellNumber)
+      if (!bombsList.includes(randomNumber)) {
+        bombsList.push(randomNumber)
+      } 
+    }
+    return bombsList;
+}
+
+let bombs = generateBombs(cellNumber);
+console.log(bombs); 
 
 function random_Utility(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateBombs(cellNumber) {
-    const bombs = []
-    while (bombs.length < 16) {
-      const randomNumber = random_Utility(1, cellNumber)
-      if (!bombs.includes(randomNumber)) {
-        console.log('Add a bomb');
-        bombs.push(randomNumber)
-      }
+*/
+
+
+
+
+/* function is_a_bomb(cellNumber, bombs) {
+    if (bombs.includes(cellNumber)) {
+      console.log('is a bomb! Game over');
+    } else {
+      console.log('keep trying');
     }
-    return bombs;
-}
-
-
-
-
+  } */
 
 
 
