@@ -8,6 +8,7 @@ con difficoltà 3 => tra 1 e 49
 Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 I numeri nella lista delle bombe non possono essere duplicati.
 In seguito l'utente clicca su ogni cella:
+
 se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina,
 altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 La partita termina quando
@@ -59,7 +60,6 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
-
 function grillgen(x,y) {
     let bombs = bombGeneretor(16, x);
     console.log(bombs);
@@ -78,16 +78,23 @@ function grillgen(x,y) {
         cell.append(theNumber)  
  
 
-        cell.addEventListener('click',  function () {    
-            if (this.classList.contains("color")) {
-                this.classList.remove("color")
-            } else {
+        cell.addEventListener('click',  function () {   
+            if (!this.classList.contains("color")) {
                 this.classList.add("color")
+            } 
+
+            if (bombs.includes(cellId)){
+                this.classList.add("color-bomb");
+                console.log('game over');
+            }
+            else {
+                console.log('keep trying');
             }
         })
     }
 }
 
+/* per ogni cell contenente cellId = bombs[i] aggiungi una classe  e la partita termina*/
 
 
 function bombGeneretor(quantity, max){
@@ -98,6 +105,17 @@ function bombGeneretor(quantity, max){
     }
   return(bombList)
 }
+
+
+
+const userPoint =[]          /*----------------------------------------------------------------------- comunicare il punteggio */
+
+
+
+
+
+
+
 
 
 
