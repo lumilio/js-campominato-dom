@@ -8,12 +8,16 @@ con difficoltà 3 => tra 1 e 49
 Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 I numeri nella lista delle bombe non possono essere duplicati.
 In seguito l'utente clicca su ogni cella:
+se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso 
 
-se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina,
+
+e la partita termina,
 altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando
-il giocatore clicca su una bomba
+
+
+La partita termina quando il giocatore clicca su una bomba
 o raggiunge il numero massimo possibile di numeri consentiti.
+
 Al termine della partita il software deve scoprire tutte le bombe e comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito. */
 
 
@@ -60,6 +64,17 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
+function bombGeneretor(quantity, max){
+    const bombList = []
+    while(bombList.length < quantity){
+      var randomBombs = Math.floor(Math.random() * max) + 1
+      if(bombList.indexOf(randomBombs) === -1) bombList.push(randomBombs)
+    }
+  return(bombList)
+}
+
+
+
 function grillgen(x,y) {
     let bombs = bombGeneretor(16, x);
     console.log(bombs);
@@ -79,16 +94,18 @@ function grillgen(x,y) {
  
 
         cell.addEventListener('click',  function () {   
-            if (!this.classList.contains("color")) {
-                this.classList.add("color")
-            } 
-
+         
             if (bombs.includes(cellId)){
                 this.classList.add("color-bomb");
                 console.log('game over');
+                
+                
             }
             else {
                 console.log('keep trying');
+                this.classList.add("color");
+                userPoint.push(i)
+                console.log(userPoint.length);
             }
         })
     }
@@ -97,18 +114,12 @@ function grillgen(x,y) {
 /* per ogni cell contenente cellId = bombs[i] aggiungi una classe  e la partita termina*/
 
 
-function bombGeneretor(quantity, max){
-    const bombList = []
-    while(bombList.length < quantity){
-      var randomBombs = Math.floor(Math.random() * max) + 1
-      if(bombList.indexOf(randomBombs) === -1) bombList.push(randomBombs)
-    }
-  return(bombList)
-}
 
 
 
-const userPoint =[]          /*----------------------------------------------------------------------- comunicare il punteggio */
+
+const userPoint =[]  
+console.log(userPoint.length);        /*----------------------------------------------------------------------- comunicare il punteggio */
 
 
 
