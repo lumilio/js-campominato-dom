@@ -4,13 +4,26 @@
     margin: 0;
 }
 
+main{
+    height: 90vh;
+}
+
+.navbar-brand img{
+    width: 200px;
+}
+
+#data{
+    height: 600px;
+    color: white;
+}
+
 #container{
-    width: 1000px;
-    height: 1000px;
+    width: 630px;
+    height: 630px;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
+
 }
 .cell_type{
     border: 1px solid black;
