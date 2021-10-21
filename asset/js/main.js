@@ -27,6 +27,7 @@ const griglia = document.getElementById('container')
 
 let cellNumber;
 let cellDimension;
+let userPoint = 0  
 
 
 
@@ -76,7 +77,7 @@ function grillgen(x,y) {
         let cell = document.createElement('div');
         cell.style.width = y
         cell.style.height = y
-        cell.className = 'cell_type' , 'color'
+        cell.className = 'cell_type' 
         griglia.append(cell)     
 
 
@@ -88,32 +89,21 @@ function grillgen(x,y) {
         cell.addEventListener('click',  function (e) {   
          
             if (bombs.includes(cellId)){
-                this.classList.add("color-bomb");
-                this.removeEventListener('click', )
-                console.log('game over');
-                
-                
+                for (let i = 0; i < bombs.length; i++) {
+                    document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");
+                }               
             }
             else {
                 this.classList.add("color");
-                userPoint.push(i)
+                userPoint++;
+                console.log(userPoint);
+                if (userPoint == x - 16){
+                    console.log('hai vinto');
+                }
             }
         })
     }
 }
-
-/* per ogni cell contenente cellId = bombs[i] aggiungi una classe  e la partita termina*/
-
-
-
-
-
-
-const userPoint =[]  
-       /*----------------------------------------------------------------------- comunicare il punteggio */
-
-
-
 
 
 
