@@ -28,9 +28,7 @@ const punteggio = document.getElementById('punteggio-txt')
 
 let cellNumber;
 let cellDimension;
-let userPoint = 0  
-
-
+let userPoint = 0 
 
 
 document.getElementById("lv1btn").addEventListener('click', function () {
@@ -57,46 +55,6 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
-function grillgen(x,y) {
-    let bombs = bombGeneretor(16, x);
-    console.log(bombs);
-    for (let i = 1; i <= x; i++) {
-
-        let cellId = i
-        let cell = document.createElement('div');
-        cell.style.width = y
-        cell.style.height = y
-        cell.className = 'cell_type' 
-        griglia.append(cell)     
-
-
-        let theNumber = document.createElement('div');
-        theNumber.innerHTML = cellId 
-        cell.append(theNumber)  
- 
-
-        cell.addEventListener('click',  function (e) {   
-         
-            if (bombs.includes(cellId)){
-                for (let i = 0; i < bombs.length; i++) {
-                    document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");
-                }  
-                punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`                    
-            }  
-            else {
-                this.classList.add("color");
-                userPoint++;
-                console.log(userPoint);
-                if (userPoint == x - 16){
-                    console.log('hai vinto');
-                }
-            }
-        })
-    }
-}
-
-
-
 function bombGeneretor(quantity, max){
     const bombList = []
     while(bombList.length < quantity){
@@ -107,10 +65,134 @@ function bombGeneretor(quantity, max){
 }
 
 
+function gameover() {
+    const elements = document.getElementsByClassName("cell_type")
+    for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        element.removeEventListener('click', selezione)   
+    }
+}
 
 
 
 
+
+
+function grillgen(x,y) {
+    let bombs = bombGeneretor(16, x);
+    console.log(bombs);
+
+
+    for (let i = 1; i <= x; i++) {
+
+        let cellId = i
+        let cell = document.createElement('div');
+        cell.style.width = y
+        cell.style.height = y
+        cell.className = 'cell_type' 
+        griglia.append(cell)     
+        let theNumber = document.createElement('div');
+        theNumber.innerHTML = cellId 
+        cell.append(theNumber)  
+ 
+
+        cell.addEventListener('click',  function selezione () {   
+            if (bombs.includes(cellId)){
+                this.classList.add("color-bomb");
+                for (let i = 0; i < bombs.length; i++) {
+                    document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");
+                }  
+                punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`                   
+            }  
+            else {
+                this.classList.add("color");
+                userPoint++;
+                console.log(userPoint);
+                if (userPoint == x - 16){
+                    console.log('hai vinto');
+                }
+            }
+        })   
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function removeclick(){           
+    if (bombs.includes(cellId)){
+        punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`
+        for (let i = 0; i < bombs.length; i++) {
+            document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");   
+        }               
+    }  
+    else {
+        this.classList.add("color");
+        userPoint++;
+        if (userPoint == x - 16){}
+    }
+} */
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* cell.addEventListener('click',  function () {   
+         
+    if (bombs.includes(cellId)){
+        for (let i = 0; i < bombs.length; i++) {
+            document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");
+        }  
+        punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`                    
+    }  
+    else {
+        this.classList.add("color");
+        userPoint++;
+        console.log(userPoint);
+        if (userPoint == x - 16){
+            console.log('hai vinto');
+        }
+    }
+}) */
+
+
+
+
+
+
+
+
+
+/* for (let index = 0; index < selMode; index++) {
+    elemento.removeEventListener("click", addColor);
+}
+
+
+for (let i = 0; index < x; index++) {
+    document.getElementsByClassName("cell_type").removeEventListener("click", e);
+}  */
 /* function generateBombs(cellNumber) {
     let bombsList = []
     while (bombsList.length < 16) {
