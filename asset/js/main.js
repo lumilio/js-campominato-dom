@@ -65,12 +65,6 @@ function bombGeneretor(quantity, max){
 }
 
 
-newGame.addEventListener('click', function () {
-    document.getElementById('pulsanti').style.display = 'block';
-    cellNumber = 0;
-    cellDimension = '';
-});
-
 
 
 function grillgen(x,y) {
@@ -134,7 +128,12 @@ function grillgen(x,y) {
 
 
 
-    
+newGame.addEventListener('click', function () {
+    document.getElementById('pulsanti').style.display = 'block';
+    newGame.classList.add('d-none')
+    griglia.innerHTML = ''
+    punteggio.innerHTML = ''
+});
 
 
     
