@@ -25,8 +25,11 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 
 const griglia = document.getElementById('container')
 const punteggio = document.getElementById('punteggio-txt')
+const newGame = document.getElementById('reload')
 
 let userPoint = 0 
+
+let cellNumber, cellDimension
 
 
 document.getElementById("lv1btn").addEventListener('click', function () {
@@ -62,6 +65,13 @@ function bombGeneretor(quantity, max){
 }
 
 
+newGame.addEventListener('click', function () {
+    document.getElementById('pulsanti').style.display = 'block';
+    cellNumber = 0;
+    cellDimension = '';
+});
+
+
 
 function grillgen(x,y) {
 
@@ -84,26 +94,35 @@ function grillgen(x,y) {
         let cellSelector = document.getElementsByClassName('cell_type')
 
 
-        
+
         cell.addEventListener('click',  function selezione(e) {   
             if (bombs.includes(cellId)){
+                newGame.classList.remove('d-none')
                 punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
+
                 for (let i = 0; i < bombs.length; i++) {
                     cellSelector.item(bombs[i] - 1).classList.add("color-bomb");  /* ----------- per colorarne solo una this.classList.add("color-bomb"); */
                 }
+
                 for (let i = 0; i < x; i++) {
                     cellSelector.item(i).classList.add("stop")  /* ----------- classe vuota per fermare il click quando trovo una bomba */
-                }              
+                }  
+                
+
+
             }  
             if (!this.classList.contains("stop")) {
                 userPoint++;
                 this.removeEventListener("click", selezione); 
                 this.classList.add("color");
                 if (userPoint == x - 16){
+                    newGame.classList.remove('d-none')
                     punteggio.innerHTML = `GAME OVER<br>YOU WIN<br> MAX POINT GAINED: ${userPoint}`
+
                     for (let i = 0; i < bombs.length; i++) {
                         cellSelector.item(bombs[i] - 1).classList.add("color-bomb");  
                     }
+
                     for (let i = 0; i < x; i++) {
                         cellSelector.item(i).classList.add("stop")  
                     } 
@@ -119,7 +138,6 @@ function grillgen(x,y) {
 
 
     
-
 
 
 
