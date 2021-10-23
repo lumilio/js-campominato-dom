@@ -71,35 +71,21 @@ function grillgen(x,y) {
 
 
     let bombs = bombGeneretor(16, x);
-    function theClick() {   
-        if (bombs.includes(cellId)){
-            punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
-            for (let i = 0; i < bombs.length; i++) {
-                document.getElementsByClassName('cell_type').item(bombs[i] - 1).classList.add("color-bomb");  /* -----------per colorarne solo una this.classList.add("color-bomb"); */
-            }               
-        }  
-        else {
-            userPoint++;
-            console.log(userPoint);
-            this.removeEventListener("click", selezione); 
-            this.classList.add("color");
-            if (userPoint == x - 16){
-                punteggio.innerHTML = `GAME OVER<br>YOU WIN<br> MAX POINT GAINED: ${userPoint}`
-            }
-        }
-    } 
 
 
-    for (let i = 1; i <= x; i++) {   
+    for (let i = 1; i <= x; i++) {  
+         
         let cell = document.createElement('div');
+        cell.className = 'cell_type'
+        cell.style.width = y
+        cell.style.height = y
+
         let theNumber = document.createElement('div');
         let cellId = i
         griglia.append(cell)
         cell.append(theNumber)
         theNumber.innerHTML = cellId 
-        cell.className = 'cell_type'
-        cell.style.width = y
-        cell.style.height = y
+
 
 
         cell.addEventListener('click',  function selezione(e) {   
@@ -107,9 +93,12 @@ function grillgen(x,y) {
                 punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
                 for (let i = 0; i < bombs.length; i++) {
                     document.getElementsByClassName('cell_type').item(bombs[i] - 1).classList.add("color-bomb");  /* -----------per colorarne solo una this.classList.add("color-bomb"); */
-                }               
+                }
+                for (let i = 0; i < x; i++) {
+                    document.getElementsByClassName('cell_type').item(i).classList.add("stop")
+                }              
             }  
-            else {
+            if (!this.classList.contains("stop")) {
                 userPoint++;
                 console.log(userPoint);
                 this.removeEventListener("click", selezione); 
@@ -124,23 +113,6 @@ function grillgen(x,y) {
 
 
 
-function theClick() {   
-    if (bombs.includes(cellId)){
-        punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
-        for (let i = 0; i < bombs.length; i++) {
-            document.getElementsByClassName('cell_type').item(bombs[i] - 1).classList.add("color-bomb");  /* -----------per colorarne solo una this.classList.add("color-bomb"); */
-        }               
-    }  
-    else {
-        userPoint++;
-        console.log(userPoint);
-        this.removeEventListener("click", selezione); 
-        this.classList.add("color");
-        if (userPoint == x - 16){
-            punteggio.innerHTML = `GAME OVER<br>YOU WIN<br> MAX POINT GAINED: ${userPoint}`
-        }
-    }
-}  
     
 
 
@@ -191,23 +163,7 @@ function theClick() {
 
 
 
-cell.addEventListener('click',  function selezione(e) {   
-    if (bombs.includes(cellId)){
-        punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
-        for (let i = 0; i < bombs.length; i++) {
-            document.getElementsByClassName('cell_type').item(bombs[i] - 1).classList.add("color-bomb");  /* -----------per colorarne solo una this.classList.add("color-bomb"); */
-        }               
-    }  
-    else {
-        userPoint++;
-        console.log(userPoint);
-        this.removeEventListener("click", selezione); 
-        this.classList.add("color");
-        if (userPoint == x - 16){
-            punteggio.innerHTML = `GAME OVER<br>YOU WIN<br> MAX POINT GAINED: ${userPoint}`
-        }
-    }
-}) 
+
 
 
 
