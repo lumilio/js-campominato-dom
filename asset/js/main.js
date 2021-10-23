@@ -26,8 +26,6 @@ Al termine della partita il software deve scoprire tutte le bombe e comunicare i
 const griglia = document.getElementById('container')
 const punteggio = document.getElementById('punteggio-txt')
 
-let cellNumber;
-let cellDimension;
 let userPoint = 0 
 
 
@@ -54,7 +52,6 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
-
 function bombGeneretor(quantity, max){
     const bombList = []
     while(bombList.length < quantity){
@@ -66,12 +63,10 @@ function bombGeneretor(quantity, max){
 
 
 
-
 function grillgen(x,y) {
 
-
     let bombs = bombGeneretor(16, x);
-
+    console.log(bombs);
 
     for (let i = 1; i <= x; i++) {  
          
@@ -86,25 +81,32 @@ function grillgen(x,y) {
         cell.append(theNumber)
         theNumber.innerHTML = cellId 
 
+        let cellSelector = document.getElementsByClassName('cell_type')
 
 
+        
         cell.addEventListener('click',  function selezione(e) {   
             if (bombs.includes(cellId)){
                 punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
                 for (let i = 0; i < bombs.length; i++) {
-                    document.getElementsByClassName('cell_type').item(bombs[i] - 1).classList.add("color-bomb");  /* -----------per colorarne solo una this.classList.add("color-bomb"); */
+                    cellSelector.item(bombs[i] - 1).classList.add("color-bomb");  /* ----------- per colorarne solo una this.classList.add("color-bomb"); */
                 }
                 for (let i = 0; i < x; i++) {
-                    document.getElementsByClassName('cell_type').item(i).classList.add("stop")
+                    cellSelector.item(i).classList.add("stop")  /* ----------- classe vuota per fermare il click quando trovo una bomba */
                 }              
             }  
             if (!this.classList.contains("stop")) {
                 userPoint++;
-                console.log(userPoint);
                 this.removeEventListener("click", selezione); 
                 this.classList.add("color");
                 if (userPoint == x - 16){
                     punteggio.innerHTML = `GAME OVER<br>YOU WIN<br> MAX POINT GAINED: ${userPoint}`
+                    for (let i = 0; i < bombs.length; i++) {
+                        cellSelector.item(bombs[i] - 1).classList.add("color-bomb");  
+                    }
+                    for (let i = 0; i < x; i++) {
+                        cellSelector.item(i).classList.add("stop")  
+                    } 
                 }
             }
         })   
@@ -116,35 +118,6 @@ function grillgen(x,y) {
     
 
 
-
-/* function gameOver() {
-    // select all cells
-    const elements = document.getElementsByClassName('cell')
-    // [.cell, .cell]
-    // for each cell remove the enven litener
-    for (let index = 0; index < cellSelect.length; index++) {
-      const element = elements[index];
-      element.removeEventListener('click', cellSelect)
-    }
-  } */
-
-
-
-
-
-/* function removeclick(){           
-    if (bombs.includes(cellId)){
-        punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}`
-        for (let i = 0; i < bombs.length; i++) {
-            document.getElementsByClassName("cell_type").item(bombs[i] - 1).classList.add("color-bomb");   
-        }               
-    }  
-    else {
-        this.classList.add("color");
-        userPoint++;
-        if (userPoint == x - 16){}
-    }
-} */
     
 
 
@@ -170,36 +143,6 @@ function grillgen(x,y) {
 
 
 
-
-
-
-/* for (let index = 0; index < selMode; index++) {
-    elemento.removeEventListener("click", addColor);
-}
-
-
-for (let i = 0; index < x; index++) {
-    document.getElementsByClassName("cell_type").removeEventListener("click", e);
-}  */
-/* function generateBombs(cellNumber) {
-    let bombsList = []
-    while (bombsList.length < 16) {
-      let randomNumber = random_Utility(1, cellNumber)
-      if (!bombsList.includes(randomNumber)) {
-        bombsList.push(randomNumber)
-      } 
-    }
-    return bombsList;
-}
-
-let bombs = generateBombs(cellNumber);
-console.log(bombs); 
-
-function random_Utility(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-*/
 
 
 
