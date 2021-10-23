@@ -27,9 +27,8 @@ const griglia = document.getElementById('container')
 const punteggio = document.getElementById('punteggio-txt')
 const newGame = document.getElementById('reload')
 
-let userPoint = 0 
-
 let cellNumber, cellDimension
+let userPoint = 0 
 
 
 document.getElementById("lv1btn").addEventListener('click', function () {
@@ -82,7 +81,6 @@ newGame.addEventListener('click', function () {
     userPoint = 0 
     griglia.classList.add('bombpic');
 });
-
 
 
 
