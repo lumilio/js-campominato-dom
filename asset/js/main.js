@@ -61,6 +61,7 @@ document.getElementById("lv3btn").addEventListener('click', function () {
 
 
 
+
 function bombGeneretor(quantity, max){
     const bombList = []
     while(bombList.length < quantity){
@@ -69,6 +70,20 @@ function bombGeneretor(quantity, max){
     }
   return(bombList)
 }
+
+
+
+
+newGame.addEventListener('click', function () {
+    document.getElementById('pulsanti').style.display = 'block';
+    newGame.classList.add('d-none')
+    griglia.innerHTML = ''
+    punteggio.innerHTML = ''
+    userPoint = 0 
+    griglia.classList.add('bombpic');
+});
+
+
 
 
 
@@ -95,7 +110,11 @@ function grillgen(x,y) {
 
 
 
-        cell.addEventListener('click',  function selezione(e) {   
+
+
+        cell.addEventListener('click',  function selezione(e) { 
+            
+            
             if (bombs.includes(cellId)){
                 newGame.classList.remove('d-none')
                 punteggio.innerHTML = `GAME OVER <br> POINTS: ${userPoint}` 
@@ -106,11 +125,10 @@ function grillgen(x,y) {
 
                 for (let i = 0; i < x; i++) {
                     cellSelector.item(i).classList.add("stop")  /* ----------- classe vuota per fermare il click quando trovo una bomba */
-                }  
-                
+                } 
+            }
 
 
-            }  
             if (!this.classList.contains("stop")) {
                 userPoint++;
                 this.removeEventListener("click", selezione); 
@@ -134,13 +152,7 @@ function grillgen(x,y) {
 
 
 
-newGame.addEventListener('click', function () {
-    document.getElementById('pulsanti').style.display = 'block';
-    newGame.classList.add('d-none')
-    griglia.innerHTML = ''
-    punteggio.innerHTML = ''
-    griglia.classList.add('bombpic');
-});
+
 
 
     
