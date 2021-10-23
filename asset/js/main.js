@@ -35,22 +35,28 @@ let cellNumber, cellDimension
 document.getElementById("lv1btn").addEventListener('click', function () {
     cellNumber = 100;
     cellDimension = '63px';       
-    grillgen(cellNumber,cellDimension)
-    document.getElementById('pulsanti').style.display = 'none'; 
+    grillgen(cellNumber,cellDimension);
+    document.getElementById('pulsanti').style.display = 'none';
+    griglia.classList.remove('bombpic');
+    griglia.classList.add('bg-white');
 })
 
 document.getElementById("lv2btn").addEventListener('click', function () {
     cellNumber = 81;
     cellDimension = '70px';
-    grillgen(cellNumber,cellDimension)
+    grillgen(cellNumber,cellDimension);
     document.getElementById('pulsanti').style.display = 'none';
+    griglia.classList.remove('bombpic');
+    griglia.classList.add('bg-white');
 })
 
 document.getElementById("lv3btn").addEventListener('click', function () {
     cellNumber = 49;
     cellDimension = '90px';
-    grillgen(cellNumber,cellDimension)
+    grillgen(cellNumber,cellDimension);
     document.getElementById('pulsanti').style.display = 'none';
+    griglia.classList.remove('bombpic');
+    griglia.classList.add('bg-white');
 })
 
 
@@ -133,6 +139,7 @@ newGame.addEventListener('click', function () {
     newGame.classList.add('d-none')
     griglia.innerHTML = ''
     punteggio.innerHTML = ''
+    griglia.classList.add('bombpic');
 });
 
 
