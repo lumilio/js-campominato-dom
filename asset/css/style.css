@@ -21,7 +21,7 @@ main{
 #container{
     width: 630px;
     height: 630px;
-    background-color: white;
+
     display: flex;
     flex-wrap: wrap;
 
@@ -39,4 +39,9 @@ main{
 
 .color-bomb{
     background-color: red;
+}
+
+.bombpic{
+    background-image: url('/img/photo1634952772.jpeg');
+    background-size: cover;
 }
