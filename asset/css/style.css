@@ -15,12 +15,16 @@ main{
 #data{
     height: 600px;
     width: 400px;
+    min-width: 400px;
+    min-height: 600px;
     color: white;
 }
 
 #container{
     width: 630px;
     height: 630px;
+    min-width: 630px;
+    min-height: 630px;
     display: flex;
     flex-wrap: wrap;
 
