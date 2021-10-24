@@ -37,7 +37,6 @@ document.getElementById("lv1btn").addEventListener('click', function () {
     grillgen(cellNumber,cellDimension);
     document.getElementById('pulsanti').style.display = 'none';
     griglia.classList.remove('bombpic');
-    griglia.classList.add('bg-white');
 })
 
 document.getElementById("lv2btn").addEventListener('click', function () {
@@ -46,7 +45,6 @@ document.getElementById("lv2btn").addEventListener('click', function () {
     grillgen(cellNumber,cellDimension);
     document.getElementById('pulsanti').style.display = 'none';
     griglia.classList.remove('bombpic');
-    griglia.classList.add('bg-white');
 })
 
 document.getElementById("lv3btn").addEventListener('click', function () {
@@ -55,7 +53,6 @@ document.getElementById("lv3btn").addEventListener('click', function () {
     grillgen(cellNumber,cellDimension);
     document.getElementById('pulsanti').style.display = 'none';
     griglia.classList.remove('bombpic');
-    griglia.classList.add('bg-white');
 })
 
 

@@ -21,7 +21,6 @@ main{
 #container{
     width: 630px;
     height: 630px;
-
     display: flex;
     flex-wrap: wrap;
 
@@ -31,6 +30,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .color{
