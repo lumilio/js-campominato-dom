@@ -42,6 +42,6 @@ main{
 }
 
 .bombpic{
-    background-image: url('.../img/photo1634952772.jpeg');
+    background-image: url('/img/photo1634952772.jpeg');
     background-size: cover;
 }
